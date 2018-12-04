@@ -1,0 +1,8 @@
+{
+    "id": "number",
+    "next": "optional|number",
+    "title": "string",
+    "field": {
+        "string": "string"
+    }
+}

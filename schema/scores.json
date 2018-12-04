@@ -1,0 +1,8 @@
+{
+    "user_id": "string",
+    "correct": "number",
+    "answers": {
+        "number": "string"
+    },
+    "timestamp": "number"
+}
