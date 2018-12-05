@@ -4,6 +4,9 @@
       "rewrites": [{
         "source": "**",
         "destination": "/index.html"
+      },{
+        "source": "**",
+        "function": "app"
       }],
       "ignore": [
         "firebase.json",

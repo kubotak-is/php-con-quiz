@@ -7,32 +7,36 @@ const score = require("./score");
 
 admin.initializeApp(functions.config().firebase);
 const db = admin.firestore();
+db.settings({ timestampsInSnapshots: true });
 
 app.post("/api/result", (req, res) => {
   let user_id = req.body.user_id;
   let answers = req.body.answers;
+
+  let s;
+
   // 正解の取得
-  correct
+  correct()
     .then(data => {
       // 正解の個数
       let result = 0;
-      for (let [k, v] of answers) {
-        if (v === data[k]) {
+      for (let k in answers) {
+        if (answers[k] === data[k]) {
           ++result;
         }
       }
-      let s = new score({
+      s = new score({
         user_id: user_id,
         correct: result,
-        answers: answers
+        answers: answers,
+        timestamp: new Date().getTime()
       });
       return Promise.resolve(s.export());
     })
     .then(s => {
       return saveScore(s);
     })
-    .then(s => {
-      console.log(s);
+    .then(() => {
       res.status(201).json({
         result: "success",
         score: s
@@ -57,8 +61,8 @@ const correct = async () => {
 };
 
 const saveScore = async s => {
-  let docRef = db.collection("scores");
-  return docRef.add(s);
+  let docRef = db.collection("scores").doc(s.user_id);
+  return docRef.set(s);
 };
 
 exports.app = functions.https.onRequest(app);
