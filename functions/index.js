@@ -65,4 +65,10 @@ const saveScore = async s => {
   return docRef.set(s);
 };
 
-exports.app = functions.https.onRequest(app);
+exports.app = functions
+  .runWith({
+    timeoutSeconds: 180,
+    memory: "512MB"
+  })
+  .region("asia-northeast1")
+  .https.onRequest(app);
