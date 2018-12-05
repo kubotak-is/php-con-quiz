@@ -25,6 +25,16 @@ export const router = new Router({
       path: "/question/:id",
       name: "question",
       component: () => import("@/views/Question.vue")
+    },
+    {
+      path: "/result",
+      name: "result",
+      component: () => import("@/views/Result.vue")
     }
+    // {
+    //   path: "/score/:id",
+    //   name: "score",
+    //   component: () => import("@/views/Score.vue")
+    // }
   ]
 });

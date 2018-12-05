@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapActions } from "vuex";
 import { default as Question } from "@/services/question.js";
 
 export default {
@@ -24,11 +24,6 @@ export default {
   }),
   created() {
     this.fetch();
-  },
-  computed: {
-    ...mapGetters("answers", {
-      answers: "answers"
-    })
   },
   methods: {
     fetch() {
@@ -53,8 +48,7 @@ export default {
       if (next) {
         this.$router.push({ name: "question", params: { id: next } });
       } else {
-        console.log("nothing");
-        // TODO 結果ページ？
+        this.$router.push({ name: "result" });
       }
     },
     ...mapActions("answers", { addAnswer: "add" })
