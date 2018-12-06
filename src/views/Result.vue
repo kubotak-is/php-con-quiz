@@ -1,5 +1,7 @@
 <template>
-  <div v-if="result !== null"></div>
+  <div v-if="result !== null">
+    <h1>{{ label }}</h1>
+  </div>
 </template>
 
 <script>
@@ -15,6 +17,12 @@ export default {
     this.fetch();
   },
   computed: {
+    label() {
+      if (this.result !== null) {
+        return Result.rankLabel(this.result.score.correct);
+      }
+      return "";
+    },
     ...mapGetters("user", {
       user: "user"
     }),
@@ -24,9 +32,7 @@ export default {
   },
   methods: {
     fetch() {
-      let result = new Result(this.user.uid, this.answers);
-      result
-        .send()
+      Result.send(this.user.uid, this.answers)
         .then(result => {
           this.result = result;
         })
