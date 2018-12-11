@@ -1,12 +1,19 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <type-writer ref="a" @end-typewite="next" :interval="50">
-      <p>
-        ああああああ<br />いいいいいい<br />うううううう<br />ええええええ<br />おおおおおお<br />
-        かかかかかか<br />きききききき<br />くくくくくく<br />けけけけけけ<br />ここここここ
-      </p>
-    </type-writer>
+    <h1 class="home-title">
+      <img alt="Laravel Quiz" src="../assets/laravel_quiz.png" />
+    </h1>
+    <p><small>presented by istyle-inc.</small></p>
+    <img class="facade-police" src="../assets/police_a.png" alt="Facade警察" />
+    <div class="container police-comment">
+      <label class="title">Facade警察</label>
+      <type-writer ref="policecomment" :interval="50">
+        <p>
+          ちょっとそこの君。<br />Laravelについていくつか質問するから任意で答えてね。
+        </p>
+      </type-writer>
+    </div>
+    <button class="btn" @click="startBtn">こたえる</button>
   </div>
 </template>
 
@@ -20,13 +27,38 @@ export default {
     TypeWriter
   },
   mounted() {
-    const { a } = this.$refs;
-    a.$emit("typewrite");
+    const { policecomment } = this.$refs;
+    policecomment.$emit("typewrite");
   },
   methods: {
-    next() {
-      console.log("end");
+    startBtn() {
+      this.$router.push({ name: "question", params: { id: 1 } });
     }
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.home {
+  text-align: center;
+  padding-bottom: 1rem;
+}
+.home-title {
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+.facade-police {
+  width: 70%;
+}
+.police-comment {
+  width: 90%;
+  height: 100px;
+  margin: 1rem auto;
+  text-align: left;
+  .title {
+    margin-bottom: 0;
+  }
+}
+</style>
