@@ -31,11 +31,32 @@ class Result {
       case 2:
         return "逮捕（罰金5.7万）";
       case 3:
-        return "Farace巡査";
+        return "一般市民";
       case 4:
-        return "Facade警部";
+        return "Facade巡査";
       default:
-        return "Facade警視正";
+        return "Facade警部";
+    }
+  }
+
+  /**
+   * @param {Number} correct
+   * @return {String}
+   */
+  message(correct) {
+    switch (correct) {
+      case 0:
+        return `あなた、Laravel全然知らないですね。PHPフレームワーク Laravel Webアプリケーション開発 バージョン5.5 LTS対応を読んで出直してください。`;
+      case 1:
+        return `PHPフレームワーク Laravel Webアプリケーション開発 バージョン5.5 LTS対応を購入して学び直しが必要なようです。`;
+      case 2:
+        return `PHPフレームワーク Laravel Webアプリケーション開発 バージョン5.5 LTS対応を読み直しましょう。`;
+      case 3:
+        return `PHPフレームワーク Laravel Webアプリケーション開発 バージョン5.5 LTS対応は持ってますか？持ってなければぜひ買いましょう。`;
+      case 4:
+        return `あなたも同僚でしたか。一緒にFacade警察として、Laravelユーザーの良いお手本になっていきましょう。`;
+      default:
+        return `これはこれは、警部殿でしたか。今後もFacade警部として世の中のLaravelユーザーに啓蒙をお願い致します。`;
     }
   }
 }
