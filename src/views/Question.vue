@@ -1,16 +1,21 @@
 <template>
-  <div v-if="quiz !== null">
-    <h1>{{ quiz.title }}</h1>
-    <p v-html="quiz.body"></p>
-    <div
-      class="container"
-      v-for="(val, key) in quiz.field"
-      :key="key"
-      @click="add(key)"
-    >
-      <label class="title">回答 {{ key }}</label>
-      <p v-html="val"></p>
-    </div>
+  <div>
+    <template v-if="quiz === null">
+      <p class="loading">Now Loading...</p>
+    </template>
+    <template v-else>
+      <h1>{{ quiz.title }}</h1>
+      <p v-html="quiz.body"></p>
+      <div
+        class="container"
+        v-for="(val, key) in quiz.field"
+        :key="key"
+        @click="add(key)"
+      >
+        <label class="title">回答 {{ key }}</label>
+        <p v-html="val"></p>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -32,6 +37,7 @@ export default {
   },
   computed: {
     ...mapGetters("answers", {
+      answers: "answers",
       hasAnswer: "has"
     })
   },
@@ -71,7 +77,16 @@ export default {
     ...mapActions("answers", { addAnswer: "add" })
   },
   watch: {
-    $route: "fetch"
+    $route() {
+      this.fetch();
+    }
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.loading {
+  text-align: center;
+  margin: 1rem auto;
+}
+</style>

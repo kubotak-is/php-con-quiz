@@ -12,10 +12,13 @@ export default {
       return state.answers;
     },
     has: state => id => {
+      let hasState = false;
       for (let val in state.answers) {
-        if (val === id) return true;
+        if (Number(val) === Number(id)) {
+          hasState = true;
+        }
       }
-      return false;
+      return hasState;
     }
   },
   mutations: {
