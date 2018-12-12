@@ -1,6 +1,7 @@
 <template>
   <div v-if="quiz !== null">
     <h1>{{ quiz.title }}</h1>
+    <p v-html="quiz.body"></p>
     <div
       class="container"
       v-for="(val, key) in quiz.field"
@@ -8,14 +9,15 @@
       @click="add(key)"
     >
       <label class="title">回答 {{ key }}</label>
-      <p>{{ val }}</p>
+      <p v-html="val"></p>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import { default as Question } from "@/services/question.js";
+import { default as SmartPhoto } from "smartphoto";
 
 export default {
   name: "Question",
@@ -25,12 +27,21 @@ export default {
   created() {
     this.fetch();
   },
+  updated() {
+    new SmartPhoto(".js-smartPhoto");
+  },
+  computed: {
+    ...mapGetters("answers", {
+      hasAnswer: "has"
+    })
+  },
   methods: {
     fetch() {
       const { id } = this.$route.params;
       Question.get(id).then(snapshot => {
         snapshot.forEach(doc => {
           this.quiz = doc.data();
+          this.checkStatus();
         });
       });
     },
@@ -49,6 +60,12 @@ export default {
         this.$router.push({ name: "question", params: { id: next } });
       } else {
         this.$router.push({ name: "result" });
+      }
+    },
+    checkStatus() {
+      const { id } = this.$route.params;
+      if (this.hasAnswer(id)) {
+        this.assign();
       }
     },
     ...mapActions("answers", { addAnswer: "add" })

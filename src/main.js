@@ -8,6 +8,8 @@ Vue.config.productionTip = false;
 /** scss */
 import "@/scss/common.scss";
 
+import "smartphoto/css/smartphoto.css";
+
 store.dispatch("user/initialize");
 
 new Vue({

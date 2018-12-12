@@ -10,6 +10,12 @@ export default {
   getters: {
     answers: state => {
       return state.answers;
+    },
+    has: state => id => {
+      for (let val in state.answers) {
+        if (val === id) return true;
+      }
+      return false;
     }
   },
   mutations: {
