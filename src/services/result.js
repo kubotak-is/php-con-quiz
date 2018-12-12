@@ -54,7 +54,7 @@ class Result {
       case 3:
         return `PHPフレームワーク Laravel Webアプリケーション開発 バージョン5.5 LTS対応は持ってますか？持ってなければぜひ買いましょう。`;
       case 4:
-        return `あなたも同僚でしたか。一緒にFacade警察として、Laravelユーザーの良いお手本になっていきましょう。`;
+        return `同僚でしたか。一緒にFacade警察として、Laravelユーザーの良いお手本になっていきましょう。`;
       default:
         return `これはこれは、警部殿でしたか。今後もFacade警部として世の中のLaravelユーザーに啓蒙をお願い致します。`;
     }
