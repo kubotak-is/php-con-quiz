@@ -1,17 +1,23 @@
 <template>
-  <div class="result" v-if="result !== null">
-    <h1 class="result-title">結果発表</h1>
+  <div class="result">
+    <template v-if="result === null">
+      <p class="loading">Please wait...</p>
+    </template>
 
-    <div class="result-container container dark">
-      <p :class="labelClass">{{ label }}</p>
-    </div>
-    <img :src="correctImage(result.score.correct)" :alt="label" />
+    <template v-else>
+      <h1 class="result-title">結果発表</h1>
+      <div>正解率: {{ result.score.correct }} / {{ questionAll }}</div>
+      <div class="result-container container dark">
+        <p :class="labelClass">{{ label }}</p>
+      </div>
+      <img :src="correctImage(result.score.correct)" :alt="label" />
 
-    <div class="container policecomment" v-if="message">
-      <type-writer ref="policecomment" :interval="50">
-        <p>{{ message }}</p>
-      </type-writer>
-    </div>
+      <div class="container policecomment" v-if="message">
+        <type-writer ref="policecomment" :interval="50">
+          <p>{{ message }}</p>
+        </type-writer>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -59,6 +65,12 @@ export default {
       }
       return "";
     },
+    questionAll() {
+      if (this.result !== null) {
+        return Object.keys(this.result.score.answers).length;
+      }
+      return 0;
+    },
     ...mapGetters("user", {
       user: "user"
     }),
@@ -96,6 +108,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.loading {
+  text-align: center;
+  margin: 1rem auto;
+}
 .result {
   text-align: center;
 }

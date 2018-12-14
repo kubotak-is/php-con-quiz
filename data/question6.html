@@ -1,0 +1,30 @@
+次のコントローラのメソッドで、リファクタリングとしていくつかの処理を複数のクラスに小さく分離しました。<br>
+このうちデータベースのクラスに分離する例のうち、依存関係が複雑にならないものを選んでください。
+<h3>例</h3>
+<a href="/img/q/6/1.png" class="js-smartPhoto">
+<img src="/img/q/6/1.png">
+</a>
+<h3>A</h3>
+データベース操作関連の処理を全て外部クラスへ
+<a href="/img/q/6/2.png" class="js-smartPhoto">
+<img src="/img/q/6/2.png">
+</a>
+<a href="/img/q/6/3.png" class="js-smartPhoto">
+<img src="/img/q/6/3.png">
+</a>
+<h3>B</h3>
+データベース操作以外は分離する
+<a href="/img/q/6/4.png" class="js-smartPhoto">
+<img src="/img/q/6/4.png">
+</a>
+<a href="/img/q/6/5.png" class="js-smartPhoto">
+<img src="/img/q/6/5.png">
+</a>
+<h3>C</h3>
+データベース操作を分離し、HTTP操作をEloquentから分離する
+<a href="/img/q/6/6.png" class="js-smartPhoto">
+<img src="/img/q/6/6.png">
+</a>
+<a href="/img/q/6/6.png" class="js-smartPhoto">
+<img src="/img/q/6/6.png">
+</a>

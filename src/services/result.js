@@ -25,14 +25,16 @@ class Result {
   rankLabel(correct) {
     switch (correct) {
       case 0:
-        return "逮捕（無期懲役）";
       case 1:
-        return "逮捕（禁錮5.7年）";
       case 2:
-        return "逮捕（罰金5.7万）";
+        return "逮捕（無期懲役）";
       case 3:
-        return "一般市民";
+        return "逮捕（禁錮5.7年）";
       case 4:
+        return "逮捕（罰金5.7万）";
+      case 5:
+        return "一般市民";
+      case 6:
         return "Facade巡査";
       default:
         return "Facade警部";
@@ -46,14 +48,16 @@ class Result {
   message(correct) {
     switch (correct) {
       case 0:
-        return `あなた、Laravel全然知らないですね。PHPフレームワーク Laravel Webアプリケーション開発 バージョン5.5 LTS対応を読んで出直してください。`;
       case 1:
-        return `PHPフレームワーク Laravel Webアプリケーション開発 バージョン5.5 LTS対応を購入して学び直しが必要なようです。`;
       case 2:
-        return `PHPフレームワーク Laravel Webアプリケーション開発 バージョン5.5 LTS対応を読み直しましょう。`;
+        return `あなた、Laravel全然知らないですね。PHPフレームワーク Laravel Webアプリケーション開発 バージョン5.5 LTS対応を読んで出直してください。`;
       case 3:
-        return `PHPフレームワーク Laravel Webアプリケーション開発 バージョン5.5 LTS対応は持ってますか？持ってなければぜひ買いましょう。`;
+        return `PHPフレームワーク Laravel Webアプリケーション開発 バージョン5.5 LTS対応を購入して学び直しが必要なようです。`;
       case 4:
+        return `PHPフレームワーク Laravel Webアプリケーション開発 バージョン5.5 LTS対応を読み直しましょう。`;
+      case 5:
+        return `PHPフレームワーク Laravel Webアプリケーション開発 バージョン5.5 LTS対応は持ってますか？持ってなければぜひ買いましょう。`;
+      case 6:
         return `同僚でしたか。一緒にFacade警察として、Laravelユーザーの良いお手本になっていきましょう。`;
       default:
         return `これはこれは、警部殿でしたか。今後もFacade警部として世の中のLaravelユーザーに啓蒙をお願い致します。`;

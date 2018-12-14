@@ -28,16 +28,19 @@ app.post("/api/result", (req, res) => {
   correct()
     .then(data => {
       // 正解の個数
-      let result = 0;
+      let result = {};
       for (let k in answers) {
-        if (answers[k] === data[k]) {
-          ++result;
-        }
+        result[k] = {
+          answer: answers[k],
+          result: answers[k] === data[k]
+        };
       }
       s = new score({
         user_id: user_id,
-        correct: result,
-        answers: answers,
+        correct: Object.keys(result).filter(key => {
+          return result[key].result;
+        }).length,
+        answers: result,
         timestamp: new Date().getTime()
       });
       return Promise.resolve(s.export());

@@ -1,0 +1,23 @@
+Illuminate\Http\Requestクラスを継承して、下記のメソッドを追加してファサードを介して使いたい場合、ただしいメソッド追加方法を選んでください。
+<h3>例</h3>
+<a href="/img/q/7/1.png" class="js-smartPhoto">
+<img src="/img/q/7/1.png">
+</a>
+<h3>A</h3>
+Request・Inputファサードは拡張できないため、staticメソッドとして記述する
+<a href="/img/q/7/2.png" class="js-smartPhoto">
+<img src="/img/q/7/2.png">
+</a>
+<h3>B</h3>
+サービスコンテナに<pre>request</pre>で登録されているので、サービスプロバイダで登録して利用する
+<a href="/img/q/7/3.png" class="js-smartPhoto">
+<img src="/img/q/7/3.png">
+</a>
+<h3>C</h3>
+Illuminate\Foundation\Http\Kernelクラスで解決されるため、public/index.phpで利用するRequestクラスを変更する
+<a href="/img/q/7/4.png" class="js-smartPhoto">
+<img src="/img/q/7/4.png">
+</a>
+<a href="/img/q/7/5.png" class="js-smartPhoto">
+<img src="/img/q/7/5.png">
+</a>
